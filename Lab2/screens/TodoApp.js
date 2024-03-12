@@ -291,8 +291,9 @@ export const DeleteTodo = (refId) => {
 
 export const UpdateTodo = (todoItem) => {
   return new Promise((resolve, reject) => {
-    FB_DB_COLLECTION.doc(todoItem.refId)
-      .update(todoItem)
+    const {status, task, refId} = todoItem
+    FB_DB_COLLECTION.doc(refId)
+      .update({status, task})
       .then((res) => {
         resolve(res);
       })
@@ -302,4 +303,3 @@ export const UpdateTodo = (todoItem) => {
       });
   });
 };
-
